@@ -1,0 +1,237 @@
+*create implicit_control_flow true
+*create personalitylocked false
+*create_array names 2 "The American" "The Phantom"
+*create_array buddy_points 2 0
+*create_array luv_points 2 0
+*create_array romanceable 2 false
+*create_array locked 2 true true
+
+*create_array traits 7 0
+*create_array personalitytype 6 "???"
+*create_array characters 3 ""
+
+*comment arrays
+
+
+
+*create padding "‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎"
+
+*create personalityindex 0
+*create idiot 0
+*create delinquent 0
+*create underdog 0
+*create hero 0
+*create ruthless 0
+
+*comment stat stuffs
+*create humanity 100
+*create humanitystatus ""
+
+*title SPECIAL AGENT MONSTER
+*author mrdreary
+*scene_list
+  startup
+  animal
+
+*comment player data stuffs
+*create namecreated false
+*create charactercreated false
+*create dcactivated false
+*create name ""
+*create height ""
+*create build ""
+*create so ""
+*create gender ""
+*create skincolour ""
+*create haircolour ""
+*create eyecolour ""
+*create combatstyle "???"
+*create missioncount 0
+*create threatlvl "OMEGA"
+*create special "???"
+
+*comment character data
+*set names_1 "The American"
+*set names_2 "The Phantom"
+
+
+*set buddy_points_1 0
+*set buddy_points_2 0
+
+
+*set luv_points_1 0
+*set luv_points_2 0
+
+
+*set romanceable_1 true
+*set romanceable_2 false
+
+*set locked_1 true
+*script document.getElementById("characterData").setAttribute("data-names-1", stats.names_1)
+*script document.getElementById("characterData").setAttribute("data-names-2", stats.names_2)
+*script document.getElementById("characterData").setAttribute("data-buddy-points-1", stats.buddy_points_1)
+*script document.getElementById("characterData").setAttribute("data-buddy-points-2", stats.buddy_points_2)
+*script document.getElementById("characterData").setAttribute("data-luv-points-1", stats.luv_points_1)
+*script document.getElementById("characterData").setAttribute("data-luv-points-2", stats.luv_points_2)
+*script document.getElementById("characterData").setAttribute("data-romanceable-1", stats.romanceable_1)
+*script document.getElementById("characterData").setAttribute("data-romanceable-2", stats.romanceable_2)
+*script document.getElementById("characterData").setAttribute("data-locked-1", stats.locked_1)
+*script document.getElementById("characterData").setAttribute("data-locked-2", stats.locked_2)
+*script updateCharacterData()
+*comment personality system
+
+*comment default trait values
+*set traits_1 0
+*set traits_2 0
+*set traits_3 0
+*set traits_4 0
+*set traits_5 0
+*set traits_6 0
+*set traits_7 40
+
+*comment why tf are there no cases :wilted_rose:
+*if traits_1 > 40
+  *set traits_1 40
+*if traits_2 > 40
+  *set traits_2 40
+*if traits_3 > 40
+  *set traits_3 40
+*if traits_4 > 40
+  *set traits_4 40
+*if traits_5 > 40
+  *set traits_5 40
+*if traits_6 > 40
+  *set traits_6 40
+*if traits_7 > 40
+  *set traits_7 40
+
+
+*set personalitytype_1 "Hard-Working Idiot"
+*set personalitytype_2 "Badass Delinquent"
+*set personalitytype_3 "Underdog"
+*set personalitytype_4 "All-loving Hero"
+*set personalitytype_5 "The Ruthless"
+
+*label personalitydefine
+*if (personalitylocked) and (idiot > 5)
+  *set personalityindex 1
+*elseif (personalitylocked) and (delinquent > 5)
+  *set personalityindex 2
+*elseif (personalitylocked) and (underdog > 5)
+  *set personalityindex 3
+*elseif (personalitylocked) and (hero > 5)
+  *set personalityindex 4
+*elseif (personalitylocked) and (ruthless > 5)
+  *set personalityindex 5
+*else
+  *set personalityindex 6
+
+*comment humanity status
+*label humanitystatus
+*if humanity > 80
+  *set humanitystatus "PURE"
+*if humanity < 60
+  *set humanitystatus "HUMAN"
+*if humanity < 40
+  *set humanitystatus "TAINTED"
+*if humanity < 20
+  *set humanitystatus "MONSTER"
+
+
+“After your mother’s sudden and inexplicable death, you — a 17-year-old high schooler — are sent to live with an uncle you’ve never met. A man who couldn’t even be bothered to attend his own sister’s funeral. Arriving in the restless sprawl of New York City, you expect nothing but a life drowned in noise and routine.
+But your uncle is not what he seems. And neither is the city.
+Everything changed the moment that fly bit you.”
+
+DONT 
+*shake_line "DONT"|10|1000
+do that
+_______________________________________________
+
+*flash_screen black|400
+
+*scramble_text "ACCESS GRANTED"|3000
+
+*loading_dots "Synchronizing neural link"|5000|"Link established."
+
+*page_break
+
+*intro_animation
+
+*page_break
+
+*label next_scene
+*fade_in 10000
+ENTER YOUR NAME:
+*input_text name
+
+*if (name != "")
+  *set namecreated true
+*page_break
+
+*image images/chap1part1samLogo.png
+*set buddy_points_1 + 87
+*set locked_1 false
+
+
+*script document.getElementById("characterData").setAttribute("data-locked-1", stats.locked_1)
+*script document.getElementById("characterData").setAttribute("data-buddy-points-1", stats.buddy_points_1)
+*script updateCharacterData()
+
+*script console.log("Buddy Points Data:", document.getElementById("characterData").dataset.buddyPoints);
+*script console.log("Luv Points Data:", document.getElementById("characterData").dataset.luvPoints);
+*script console.log("Updated Characters Array:", JSON.stringify(characters, null, 2));
+*script console.log("Running displayCharacterCards()…");
+*script console.log("Container:", document.getElementById('characterCardsContainer'));
+*script console.log("Character Data Element:", characterData.outerHTML);
+*script checkRankUp()
+
+Your majesty, your people are starving in the streets, and threaten revolution.
+Our enemies to the west are weak, but they threaten soon to invade.  What will you do?
+
+
+*set charactercreated true
+
+*choice
+  #Make pre-emptive war on the western lands.
+    If you can seize their territory, your kingdom will flourish.  But your army's
+    morale is low and the kingdom's armory is empty.  How will you win the war?
+    *set idiot 6
+    *set buddy_points_1 +14
+    *set luv_points_1 80
+    
+    
+    
+    *script document.getElementById("characterData").setAttribute("data-buddy-points-1", stats.buddy_points_1)
+    *script document.getElementById("characterData").setAttribute("data-luv-points-1", stats.luv_points_1)
+
+    *script updateCharacterData()
+    *choice
+      #Drive the peasants like slaves; if we work hard enough, we'll win.
+        Unfortunately, morale doesn't work like that.  Your army soon turns against you
+        and the kingdom falls to the western barbarians.
+        *set personalitylocked true
+        *goto personalitydefine
+        *finish
+      #Appoint charismatic knights and give them land, peasants, and resources.
+        Your majesty's people are eminently resourceful.  Your knights win the day,
+        but take care: they may soon demand a convention of parliament.
+        *finish
+      #Steal food and weapons from the enemy in the dead of night.
+        A cunning plan.  Soon your army is a match for the westerners; they choose
+        not to invade for now, but how long can your majesty postpone the inevitable?
+        *finish
+  #Beat swords to plowshares and trade food to the westerners for protection.
+    The westerners have you at the point of a sword.  They demand unfair terms
+    from you.
+    *choice
+      #Accept the terms for now.
+        Eventually, the barbarian westerners conquer you anyway, destroying their
+        bread basket, and the entire region starves.
+        *finish
+      #Threaten to salt our fields if they don't offer better terms.
+        They blink.  Your majesty gets a fair price for wheat.
+        *finish
+  #Abdicate the throne. I have clearly mismanaged this kingdom!
+    The kingdom descends into chaos, but you manage to escape with your own hide.
+    Perhaps in time you can return to restore order to this fair land.
+    *finish

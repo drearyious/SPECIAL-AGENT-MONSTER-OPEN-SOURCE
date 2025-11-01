@@ -1,0 +1,593 @@
+/*overlay (character cards refrence) */
+
+#psychProfileOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000; 
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+#psychProfileOverlay.active {
+  pointer-events: auto;
+  opacity: 1;
+}
+#psychProfileOverlay.fade-out {
+  opacity: 0;
+}
+
+/*popup container*/
+#psychProfilePopup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  width: 90%;
+  max-width: 800px;
+  max-height: 90%;
+  background: linear-gradient(145deg, #2e2e2e, #1e1e1e);
+  color: #fdfdfd; 
+  font-family: "Roboto Mono", monospace;
+  padding: 2em;
+  border: 2px solid #555;
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
+  z-index: 10000;
+  overflow-y: auto;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  font-size: 13px;
+}
+#psychProfilePopup.active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  font-size: 13px;
+}
+#psychProfilePopup.fade-out {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+  font-size: 13px;
+}
+
+/* header & title*/
+.psychProfileScene .header {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1em;
+  padding-bottom: 0.5em;
+  border-bottom: 2px solid #555;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+.psychProfileScene .personality-type {
+  font-size: 1.8em;
+  text-align: center;
+  margin: 1em 0;
+  padding: 0.5em;
+  background: #333;
+  border: 1px solid #555;
+  border-radius: 4px;
+  color: #ffffff; 
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+}
+
+
+/*stat chart*/
+.psychProfileScene .stat-chart {
+  margin: 1em 0;
+  padding: 1em;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background: #252525;
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.1);
+  color: #ffffff; 
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.2);
+}
+.psychProfileScene .stat-chart p {
+  margin: 0.5em 0;
+}
+
+/*return button*/
+.psychProfileScene .return-btn {
+  display: block;
+  width: 200px;
+  margin: 2em auto 0;
+  padding: 0.8em 1.2em;
+  background: #333;
+  color: #ffffff;
+  border: 1px solid #555;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.psychProfileScene .return-btn:hover {
+  background: #444;
+}
+
+/*trait section*/
+
+
+.psychProfileScene .traits-section {
+  font-size: 1.2em; 
+  line-height: 1.6;
+  color: #ffffff; 
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.2);
+  margin-bottom: 1em;
+}
+
+.psychProfileScene .traits-section b,
+.psychProfileScene .traits-section strong {
+  color: #ffffff;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+.psychProfileScene .traits-section {
+  font-size: 1.1em;
+  line-height: 1.5;
+  color: #ffffff;
+  background: #2a2a2a; 
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 1em;
+  margin-bottom: 1em;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+  text-shadow: none;
+}
+.psychProfileScene .traits-section::selection {
+  background: #ffcc00; 
+}
+
+
+.psychProfileScene .traits-section {
+  unicode-bidi: isolate; 
+  text-shadow: none;
+}
+.psychProfileScene .traits-section p {
+  white-space: pre-wrap; 
+  text-shadow: none;
+}
+.psychProfileScene .traits-section p:before,
+.psychProfileScene .traits-section p:after {
+  content: "";
+}
+.psychProfileScene .traits-section p {
+  text-shadow: none;
+}
+
+.psychProfileScene .traits-section p {
+  color: #fff; 
+  text-shadow: none;
+}
+
+
+/*star display -*/
+
+.psychProfileScene .traits-section .starFilled,
+.psychProfileScene .filled-star {
+  color: #FFD700; 
+  text-shadow: none; 
+  font-size: 1.3em;
+  margin: 0 1px;
+}
+
+.psychProfileScene .traits-section .starEmpty,
+.psychProfileScene .empty-star {
+  color: #555;
+  text-shadow: none; 
+  font-size: 1.3em;
+  margin: 0 1px;
+}
+
+/*stat chart */
+.psychProfileScene .stat-chart {
+  margin: 1em 0;
+  padding: 1em;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background: #252525;
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.1);
+  color: #ffffff; 
+  text-shadow: none; 
+}
+.psychProfileScene .stat-chart p {
+  margin: 0.5em 0;
+  color: #ffffff;
+  font-size: 1.2em; 
+}
+
+
+/*personality speciifcs*/
+
+/* Hard-Working Idiot */
+   #psychProfilePopup.hardWorkingIdiot {
+    background: linear-gradient(145deg, #FCEabb, #F8B500);
+    border: 3px solid #E27D60;
+    color: #1F1F1F;
+    font-family: 'Cabin Sketch', cursive, sans-serif;
+  }
+  #psychProfilePopup.hardWorkingIdiot .personality-type {
+    background: #FFDE7D;
+    border: 3px solid #E27D60;
+    color: #1F1F1F;
+    font-family: 'Comic Neue', cursive, sans-serif;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  }
+  .psychProfileScene.hardWorkingIdiot .traits-section {
+  font-size: 1.1em;
+  line-height: 1.5;
+  background: #e2c366;
+  border: 3px solid #E27D60;
+  color: #1F1F1F;
+  border-radius: 4px;
+  padding: 1em;
+  margin-bottom: 1em;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+  text-shadow: none;
+  }
+
+  .psychProfileScene.hardWorkingIdiot .stat-chart {
+  margin: 1em 0;
+  padding: 1em;
+  background: #e2c366;
+  border: 3px solid #E27D60;
+  color: #1F1F1F;
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.1);
+  text-shadow: none; 
+  }
+
+  .psychProfileScene.hardWorkingIdiot .traits-section p,
+  .psychProfileScene.hardWorkingIdiot .stat-chart p {
+  color: #131313;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+  }
+
+  .psychProfileScene.hardWorkingIdiot .return-btn {
+  display: block;
+  width: 200px;
+  margin: 2em auto 0;
+  padding: 0.8em 1.2em;
+  background: #e2c366;
+  border: 2px solid #E27D60;
+  color: #1F1F1F;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  text-transform: uppercase;
+  font-weight: bold;
+  }
+
+  .psychProfileScene.hardWorkingIdiot .return-btn:hover {
+  background: rgb(255, 239, 192);
+  }
+
+  .psychProfileScene.hardWorkingIdiot .traits-section .starFilled,
+  .psychProfileScene.hardWorkingIdiot .filled-star {
+    color: #9b8402; 
+    text-shadow: none; 
+    font-size: 1.3em;
+    margin: 0 1px;
+  }
+
+  .psychProfileScene.hardWorkingIdiot .traits-section .starEmpty,
+  .psychProfileScene.hardWorkingIdiot .empty-star {
+    color: #373737;
+    text-shadow: none; 
+    font-size: 1.3em;
+    margin: 0 1px;
+  }
+
+  /* Delinquent */
+  #psychProfilePopup.badassDelinquent {
+    background: linear-gradient(145deg, #0D0D0D, #1C1C1C);
+    border: 3px solid #E63946;
+    color: #FDFDFD;
+    font-family: 'Orbitron', sans-serif;
+  }
+  #psychProfilePopup.badassDelinquent .personality-type {
+    background: #E63946;
+    border: 3px solid #FF6B6B;
+    color: #FFFFFF;
+    font-family: 'Orbitron', sans-serif;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+  }
+
+  .psychProfileScene.badassDelinquent .traits-section {
+  font-size: 1.1em;
+  line-height: 1.5;
+  background: #E63946;
+  border: 3px solid #FF6B6B;
+  color: #FFFFFF;
+  border-radius: 4px;
+  padding: 1em;
+  margin-bottom: 1em;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+  text-shadow: none;
+  }
+
+  .psychProfileScene.badassDelinquent .stat-chart {
+  margin: 1em 0;
+  padding: 1em;
+  background: #E63946;
+  border: 3px solid #FF6B6B;
+  color: #FFFFFF;
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.1);
+  text-shadow: none; 
+  }
+
+  .psychProfileScene.badassDelinquent .traits-section p,
+  .psychProfileScene.badassDelinquent .stat-chart p {
+  color: #FFFFFF;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+  }
+
+  .psychProfileScene.badassDelinquent .return-btn {
+  display: block;
+  width: 200px;
+  margin: 2em auto 0;
+  padding: 0.8em 1.2em;
+  background: #E63946;
+  border: 2px solid #FF6B6B;
+  color: #FFFFFF;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  text-transform: uppercase;
+  font-weight: bold;
+  }
+
+  .psychProfileScene.badassDelinquent .return-btn:hover {
+  background: #ff6673;
+  }
+
+  .psychProfileScene.badassDelinquent .traits-section .starFilled,
+  .psychProfileScene.badassDelinquent .filled-star {
+    color: #ff7c87; 
+    text-shadow: none; 
+    font-size: 1.3em;
+    margin: 0 1px;
+  }
+
+  .psychProfileScene.badassDelinquent .traits-section .starEmpty,
+  .psychProfileScene.badassDelinquent .empty-star {
+    color: #c0c0c0;
+    text-shadow: none; 
+    font-size: 1.3em;
+    margin: 0 1px;
+  }
+
+  
+  /* Underdog */
+  #psychProfilePopup.underdog {
+    background: linear-gradient(145deg, #7D8CA3, #4F617D);
+    border: 3px solid #A3A3A3;
+    color: #FDFDFD;
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+  #psychProfilePopup.underdog .personality-type {
+    background: #95A5A6;
+    border: 3px solid #A3A3A3;
+    color: #FDFDFD;
+    font-family: 'Source Sans Pro', sans-serif;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  }
+
+  .psychProfileScene.underdog .traits-section {
+  font-size: 1.1em;
+  line-height: 1.5;
+  background: #95A5A6;
+  border: 3px solid #A3A3A3;
+  color: #FDFDFD;
+  border-radius: 4px;
+  padding: 1em;
+  margin-bottom: 1em;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+  text-shadow: none;
+  }
+
+  .psychProfileScene.underdog .stat-chart {
+  margin: 1em 0;
+  padding: 1em;
+  background: #95A5A6;
+  border: 3px solid #A3A3A3;
+  color: #FDFDFD;
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.1);
+  text-shadow: none; 
+  }
+
+  .psychProfileScene.underdog .traits-section p,
+  .psychProfileScene.underdog .stat-chart p {
+  color: #FDFDFD;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+  }
+
+  .psychProfileScene.underdog .return-btn {
+  display: block;
+  width: 200px;
+  margin: 2em auto 0;
+  padding: 0.8em 1.2em;
+  background: #95A5A6;
+  border: 2px solid #95A5A6;
+  color: #FDFDFD;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  text-transform: uppercase;
+  font-weight: bold;
+  }
+
+  .psychProfileScene.underdog .return-btn:hover {
+  background: #95A5A6;
+  }
+
+  .psychProfileScene.underdog .traits-section .starFilled,
+  .psychProfileScene.underdog .filled-star {
+    color: #fffa73; 
+    text-shadow: none; 
+    font-size: 1.3em;
+    margin: 0 1px;
+  }
+
+  
+  /* Hero */
+  #psychProfilePopup.allLovingHero {
+    background: linear-gradient(145deg, #B3E5FC, #81D4FA);
+    border: 3px solid #F2F2F2;
+    color: #1F1F1F;
+    font-family: 'Montserrat', sans-serif;
+  }
+  #psychProfilePopup.allLovingHero .personality-type {
+    background: #F2F2F2;
+    border: 3px solid #56CCF2;
+    color: #1F1F1F;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+
+      .psychProfileScene.allLovingHero .traits-section {
+  font-size: 1.1em;
+  line-height: 1.5;
+  background: #F2F2F2;
+  border: 3px solid #56CCF2;
+  color: #1F1F1F;
+  border-radius: 4px;
+  padding: 1em;
+  margin-bottom: 1em;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+  text-shadow: none;
+  }
+
+  .psychProfileScene.allLovingHero .stat-chart {
+  margin: 1em 0;
+  padding: 1em;
+  background: #F2F2F2;
+  border: 3px solid #56CCF2;
+  color: #1F1F1F;
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.1);
+  text-shadow: none; 
+  }
+
+  .psychProfileScene.allLovingHero .traits-section p,
+  .psychProfileScene.allLovingHero .stat-chart p {
+  color: #1F1F1F;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+  }
+
+  .psychProfileScene.allLovingHero .return-btn {
+  display: block;
+  width: 200px;
+  margin: 2em auto 0;
+  padding: 0.8em 1.2em;
+  background: #F2F2F2;
+  border: 2px solid #56CCF2;
+  color: #1F1F1F;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  text-transform: uppercase;
+  font-weight: bold;
+  }
+
+  .psychProfileScene.allLovingHero .return-btn:hover {
+  background: #ffffff;
+  }
+
+  .psychProfileScene.allLovingHero .traits-section .starEmpty,
+  .psychProfileScene.allLovingHero .empty-star {
+    color: #c0c0c0;
+    text-shadow: none; 
+    font-size: 1.3em;
+    margin: 0 1px;
+  }
+  
+  /* Ruthless */
+  #psychProfilePopup.theRuthless {
+    background: linear-gradient(145deg, #1C0F2E, #0A0515); 
+    border: 3px solid #800080; 
+    color: #FDFDFD;
+    font-family: 'Oswald', sans-serif;
+  }
+  #psychProfilePopup.theRuthless .personality-type {
+    background: #6A0DAD; 
+    border: 3px solid #800080;
+    color: #FFFFFF;
+    font-family: 'Oswald', sans-serif;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  }
+  
+  .psychProfileScene.theRuthless .traits-section {
+  font-size: 1.1em;
+  line-height: 1.5;
+  background: #6A0DAD;
+  border: 3px solid #800080;
+  color: #FFFFFF;
+  border-radius: 4px;
+  padding: 1em;
+  margin-bottom: 1em;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+  text-shadow: none;
+  }
+
+  .psychProfileScene.theRuthless .stat-chart {
+  margin: 1em 0;
+  padding: 1em;
+  background: #6A0DAD;
+  border: 3px solid #800080;
+  color: #FFFFFF;
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.1);
+  text-shadow: none; 
+  }
+
+  .psychProfileScene.theRuthless .traits-section p,
+  .psychProfileScene.theRuthless .stat-chart p {
+  color: #FFFFFF;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+  }
+
+  .psychProfileScene.theRuthless .return-btn {
+  display: block;
+  width: 200px;
+  margin: 2em auto 0;
+  padding: 0.8em 1.2em;
+  background: #6A0DAD;
+  border: 2px solid #800080;
+  color: #ffffff;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  text-transform: uppercase;
+  font-weight: bold;
+  }
+
+  .psychProfileScene.theRuthless .return-btn:hover {
+  background: #820bd7;
+  }
+
+  .psychProfileScene.theRuthless .traits-section .starFilled,
+  .psychProfileScene.theRuthless .filled-star {
+    color: #ac04ac; 
+    text-shadow: none; 
+    font-size: 1.3em;
+    margin: 0 1px;
+  }
+
+  .psychProfileScene.theRuthless .traits-section .starEmpty,
+  .psychProfileScene.theRuthless .empty-star {
+    color: #c6c6c6;
+    text-shadow: none; 
+    font-size: 1.3em;
+    margin: 0 1px;
+  }
